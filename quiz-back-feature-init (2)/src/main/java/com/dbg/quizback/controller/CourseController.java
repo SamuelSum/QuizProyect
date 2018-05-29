@@ -1,9 +1,11 @@
 package com.dbg.quizback.controller;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,7 @@ import com.dbg.quizback.component.mapper.course.CourseMapper;
 import com.dbg.quizback.dto.CourseGenericDTO;
 import com.dbg.quizback.model.Course;
 import com.dbg.quizback.service.CourseService;
+import com.dbg.quizback.service.UserService;
 
 @RestController
 @RequestMapping(value = "/course")
@@ -33,12 +36,25 @@ public class CourseController {
 	    return courseMapper.modelToDto(coursers);
 	}
 	
+	
+	
+	
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public CourseGenericDTO create(@RequestBody CourseGenericDTO dto) {
 		final Course course = courseMapper.dtoToModel(dto);
 		final Course createCourse = courseService.create(course);
 		return courseMapper.modelToDto(createCourse);
 		
+	}
+	
+	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE})
+	public void delete (@PathVariable("id") Integer id) {
+		if (courseService.findById(id).isPresent()) {
+			Optional<Course> course;
+			course = courseService.findById(id);
+			courseService.delete(course.get());
+		}
 	}
 	
 
