@@ -41,6 +41,13 @@ public class QuestionController {
 		final Set<Question> questions = questionService.findAll(PageRequest.of(page, size));
 		return questionMapper.modelToDto(questions);
 	}
+	
+	@RequestMapping(value = "/{id}")
+	public QuestionDTO findById(@PathVariable("id") Integer id) {
+		
+		final Optional<Question> question = questionService.findById(id);
+		return questionMapper.modelToDto(question.get());
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public QuestionDTO create (@RequestBody QuestionPostDTO dto) {
