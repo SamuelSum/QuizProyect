@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dbg.quizback.component.mapper.user.UserMapper;
-import com.dbg.quizback.dto.UserDTO;
+import com.dbg.quizback.component.mapper.user.UserGenericMapper;
+import com.dbg.quizback.component.mapper.user.UserIdMapper;
 import com.dbg.quizback.dto.UserGenericDTO;
-import com.dbg.quizback.dto.UserPostDTO;
+import com.dbg.quizback.dto.UserIdDTO;
 import com.dbg.quizback.model.User;
 import com.dbg.quizback.service.UserService;
 
@@ -27,38 +27,41 @@ public class UserController {
 	UserService userService;
 
 	@Autowired
-	UserMapper userMapper;
+	UserGenericMapper userGenericMapper;
+	
+	@Autowired
+	UserIdMapper userIdMapper;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public Set<UserGenericDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
 		final Set<User> users = userService.findAll(PageRequest.of(page, size));
-		return userMapper.modelToDto(users);
+		return userGenericMapper.modelToDto(users);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public UserGenericDTO findById(@PathVariable("id") Integer id) {
+	public UserIdDTO findById(@PathVariable("id") Integer id) {
 
 		final Optional<User> user = userService.findById(id);
-		return userMapper.modelToDto(user.get());
+		return userIdMapper.modelToDto(user.get());
 	}
 	 
 
 	@RequestMapping(method = RequestMethod.POST)
 	public UserGenericDTO create(@RequestBody UserGenericDTO dto) {
-		final User user = userMapper.dtoToModel(dto);
+		final User user = userGenericMapper.dtoToModel(dto);
 		final User createUser = userService.create(user);
-		return userMapper.modelToDto(createUser);
+		return userGenericMapper.modelToDto(createUser);
 	}
-/*
+
 	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT })
-	public void update(@PathVariable("id") Integer id, @RequestBody UserPostDTO dto) {
-		final User user = userMapper.dtoToModel(dto);
+	public void update(@PathVariable("id") Integer id, @RequestBody UserIdDTO dto) {
+		final User user = userIdMapper.dtoToModel(dto);
 		user.setIdUser(id);
 		userService.update(user);
 
 	}
-*/
+
 	
 	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE })
 	public void delete(@PathVariable("id") Integer id) {

@@ -5,6 +5,6 @@ import com.dbg.quizback.dto.UserDTO;
 import com.dbg.quizback.dto.UserGenericDTO;
 import com.dbg.quizback.model.User;
 
-public interface UserMapper extends Mapper<User, UserGenericDTO> {
+public interface UserGenericMapper extends Mapper<User, UserGenericDTO> {
 
 }
