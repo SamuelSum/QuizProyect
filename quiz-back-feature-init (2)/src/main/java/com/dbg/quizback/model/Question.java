@@ -1,9 +1,9 @@
 package com.dbg.quizback.model;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
-import javax.persistence.CollectionTable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,10 +15,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.OrderColumn;
 
-import org.hibernate.annotations.IndexColumn;
-import org.springframework.core.annotation.Order;
+
+
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -49,6 +49,7 @@ public class Question {
 	@JoinColumn(name= "ID_DIFICULTAD")
 	private Dificulty dificulty;
 	
+
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	@Column(name = "ID_ANSWER")

@@ -18,8 +18,10 @@ public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	QuestionDAO questionDao;
 	
+	
 	@Override
 	public Question create(Question t) {
+		
          return questionDao.save(t);
 	}
 
