@@ -1,22 +1,18 @@
 package com.dbg.quizback.component.mapper.tag;
 
-import java.util.List;
-
-import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
 import com.dbg.quizback.component.mapper.AbstractMapper;
 import com.dbg.quizback.dto.TagDTO;
-import com.dbg.quizback.dto.TagPostDTO;
 import com.dbg.quizback.model.Tag;
 
 @Component
-public class TagPostMapperImpl extends AbstractMapper<Tag, TagPostDTO> implements TagPostMapper {
+public class TagMapperImpl extends AbstractMapper<Tag, TagDTO> implements TagMapper {
 
 	@Override
-	public Class<? extends TagPostDTO> dtoClazz() {
+	public Class<? extends TagDTO> dtoClazz() {
 		// TODO Auto-generated method stub
-		return TagPostDTO.class;
+		return TagDTO.class;
 	}
 
 	@Override
@@ -24,13 +20,5 @@ public class TagPostMapperImpl extends AbstractMapper<Tag, TagPostDTO> implement
 		// TODO Auto-generated method stub
 		return Tag.class;
 	}
-//		
-//	public Class<Tag> dtoToModel(TagDTO dto) {
-//		Tag tag = dozer.map(dto, Tag.class);
-//		return Tag.class;
-//	}
-//	
-	
 
-	
 }
