@@ -11,7 +11,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class CourseGenericDTO implements Serializable{
+public class CoursePostDTO implements Serializable{
 	
     // private Integer idCourse;
 	   private Date date;

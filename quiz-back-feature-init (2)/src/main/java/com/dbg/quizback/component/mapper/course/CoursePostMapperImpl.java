@@ -4,15 +4,16 @@ import org.springframework.stereotype.Component;
 
 import com.dbg.quizback.component.mapper.AbstractMapper;
 
-import com.dbg.quizback.dto.CourseGenericDTO;
+
+import com.dbg.quizback.dto.CoursePostDTO;
 import com.dbg.quizback.model.Course;
 
 @Component
-public class CourseMapperImpl extends AbstractMapper <Course, CourseGenericDTO> implements CourseMapper {
+public class CoursePostMapperImpl extends AbstractMapper <Course, CoursePostDTO> implements CoursePostMapper {
 
 	@Override
-	public Class<? extends CourseGenericDTO> dtoClazz() {
-		return CourseGenericDTO.class;
+	public Class<? extends CoursePostDTO> dtoClazz() {
+		return CoursePostDTO.class;
 	}
 
 	@Override
