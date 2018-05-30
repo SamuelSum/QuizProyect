@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dbg.quizback.component.mapper.question.QuestionMapper;
+import com.dbg.quizback.component.mapper.question.QuestionPostMapper;
 import com.dbg.quizback.dto.QuestionDTO;
 import com.dbg.quizback.dto.QuestionPostDTO;
 import com.dbg.quizback.model.Question;
@@ -30,6 +31,9 @@ public class QuestionController {
 	@Autowired
 	QuestionMapper questionMapper;
 	
+	@Autowired
+	QuestionPostMapper questionPostMapper;
+	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public Set<QuestionDTO> findAll (@RequestParam(defaultValue = "0", required = false) Integer page,
@@ -40,13 +44,12 @@ public class QuestionController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public QuestionDTO create (@RequestBody QuestionPostDTO dto) {
-		final Question question = questionMapper.dtoToModel(dto);
+		final Question question = questionPostMapper.dtoToModel(dto);
 		final Question createQuestion = questionService.create(question);
-		return questionMapper.modelToDto(createQuestion);
+		return questionPostMapper.modelToDto(createQuestion);
 		
 	}
 	
-
 	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE })
 	public void delete(@PathVariable("id") Integer id) {
 		if (questionService.findById(id).isPresent()) {

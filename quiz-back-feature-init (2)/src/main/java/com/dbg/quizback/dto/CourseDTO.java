@@ -14,5 +14,5 @@ public class CourseDTO implements Serializable{
 	
 	   private Integer idCourse;
 	   private Date date;
-       private List<Quiz> quiz;
+    //   private List<Quiz> quiz;
 }

@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class QuestionPostDTO extends QuestionDTO {
 
-	
+	   private String statement;
 }
