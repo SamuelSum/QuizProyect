@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dbg.quizback.component.mapper.question.QuestionMapper;
 import com.dbg.quizback.component.mapper.question.QuestionPostMapper;
+import com.dbg.quizback.dto.AnswerDTO;
 import com.dbg.quizback.dto.QuestionDTO;
 import com.dbg.quizback.dto.QuestionPostDTO;
 import com.dbg.quizback.model.Question;
@@ -66,5 +68,17 @@ public class QuestionController {
 
 		}
 	}
+	
+	
+	//primero lo hago y luego me planteo cambar de nuevo los DTOs
+	@RequestMapping(value = "/{id}/answer", method = { RequestMethod.GET })
+    public  ResponseEntity<QuestionDTO> combineAnsQ(@PathVariable("id") Integer id, @RequestBody AnswerDTO dto) {
+		
+		
+		Answer answer = 
+	final Optional<Question> question = questionService.findById(id);
+	return questionMapper.modelToDto(question.get());
+}
+	 
 }
 	

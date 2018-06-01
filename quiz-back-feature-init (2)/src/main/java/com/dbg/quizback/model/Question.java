@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -34,7 +35,7 @@ public class Question {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
-	private int idQuestion;
+	private Integer idQuestion;
 	
 	@Column(nullable = false)
 	private String statement;
@@ -45,8 +46,8 @@ public class Question {
 			   inverseJoinColumns = {@JoinColumn(name = "idQuiz")})
 	private List<Quiz> quiz;
 	
-	@OneToOne
-	@JoinColumn(name= "ID_DIFICULTAD")
+	@JoinColumn
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Dificulty dificulty;
 	
 
@@ -57,3 +58,23 @@ public class Question {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

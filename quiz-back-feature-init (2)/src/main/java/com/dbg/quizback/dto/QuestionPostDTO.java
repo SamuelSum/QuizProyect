@@ -1,5 +1,8 @@
 package com.dbg.quizback.dto;
 
+import java.util.List;
+
+import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Dificulty;
 
 import lombok.Data;
@@ -8,5 +11,6 @@ import lombok.Data;
 public class QuestionPostDTO extends QuestionDTO {
 
 	   private String statement;
-	   private Integer dificulty;
+	   private Dificulty dificulty;
+	   private List<Answer> respuestas;
 }

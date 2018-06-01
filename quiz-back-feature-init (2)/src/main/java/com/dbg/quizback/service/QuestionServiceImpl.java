@@ -30,6 +30,7 @@ public class QuestionServiceImpl implements QuestionService {
 		questionDao.save(t);
 		
 	}
+	
 
 	@Override
 	public Optional<Question> findById(Integer id) {
@@ -51,6 +52,12 @@ public class QuestionServiceImpl implements QuestionService {
 	
 
 		
+	}
+
+	@Override
+	public Optional<Question> findAnswerById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
