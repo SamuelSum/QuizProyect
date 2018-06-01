@@ -37,7 +37,6 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	
-	
 	@Override
 	public Optional<Answer> findById(Integer id) {
 		return answerDao.findById(id);

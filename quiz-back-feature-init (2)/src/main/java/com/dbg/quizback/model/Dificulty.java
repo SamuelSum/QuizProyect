@@ -29,8 +29,8 @@ public class Dificulty {
 	//@OneToMany(fetch =  FetchType.LAZY)
 	//private List<Question> question;
 	
-	//@Column(name = "VALUE_DIFICULTY")
-	//private Integer dificulty;
+	@Column(name = "VALUE_DIFICULTY", unique = false)
+	private Integer dificultyLevel;
 
 	
 	

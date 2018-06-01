@@ -1,6 +1,7 @@
 package com.dbg.quizback.service;
 
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,11 +24,15 @@ public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	AnswerService answerService;
 	
+	@Autowired
+	DificultyService dificultyService;
+	
 	
 	@Override
 	public Question create(Question t) {
-		
-         return questionDao.save(t);
+		Question question = t;
+		dificultyService.create(question.getDificulty());
+        return questionDao.save(t);
 	}
 
 	@Override
@@ -70,8 +75,8 @@ public class QuestionServiceImpl implements QuestionService {
 	public void añadirRespuestas(Question question, Answer answer) {
 		Question q = question;
 		answerService.create(answer);
-		
-		
+		List<Answer> answers = q.getAnswers();
+		answers.add(answer);
 		questionDao.save(q);
 		
 	}
