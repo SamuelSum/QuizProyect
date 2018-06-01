@@ -63,21 +63,14 @@ public class QuestionServiceImpl implements QuestionService {
 
 		
 	}
-/*
+
 	@Override
-	public void añadirRespuestas(Question question) {
-		Question q = question;
-		answerService.create4Answer(q.getAnswers());
-		questionDao.save(q);
-	}
-*/
-	@Override
-	public void añadirRespuestas(Question question, Answer answer) {
-		Question q = question;
-		answerService.create(answer);
-		List<Answer> answers = q.getAnswers();
+	public void joinAnswerWithQuestion(Question question, Answer answer) {
+		
+		answerService.create(question, answer);
+		List<Answer> answers = question.getAnswers();
 		answers.add(answer);
-		questionDao.save(q);
+		questionDao.save(question);
 		
 	}
 

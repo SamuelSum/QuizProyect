@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class AnswerDTO implements Serializable {
 
-	
+	private String idAnswer;
 	private String answer;
-	private boolean correct;
+	private Boolean correct;
 	
 }

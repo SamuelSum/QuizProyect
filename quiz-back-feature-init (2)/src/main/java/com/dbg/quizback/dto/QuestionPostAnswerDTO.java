@@ -9,5 +9,7 @@ import lombok.Data;
 @Data
 public class QuestionPostAnswerDTO implements Serializable {
 
-	private Answer respuesta;
+	private String answer;
+	private Boolean correct;
+	
 }

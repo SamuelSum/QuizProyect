@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.dbg.quizback.dao.AnswerDAO;
 import com.dbg.quizback.model.Answer;
+import com.dbg.quizback.model.Question;
 
 
 @Service
@@ -54,23 +55,12 @@ public class AnswerServiceImpl implements AnswerService {
 		answerDao.delete(t);
 		
 	}
-/*
-	public void combineAndswerQuestion (Answer a, Integer idQuestion) {
-		
-		
-		
-		Optional<Question> question = questionService.findById(idQuestion);
-		Question questionFinal = question.get();
-		questionFinal.setAnswers(a);
-	
-	}
-	*/
 
 	@Override
-	public void create4Answer(Answer answer) {
+	public void create(Question question, Answer answer) {
+		answer.setQuestion(question);
+        answerDao.save(answer);
 		
-		}
-		
-	
+	}
 	
 }

@@ -84,7 +84,7 @@ public class QuestionController {
 	         
 		if (questionService.findById(id).isPresent()) {
 			Optional <Question> question = questionService.findById(id);
-			questionService.añadirRespuestas(question.get(), answer);
+			questionService.joinAnswerWithQuestion(question.get(), answer);
 		}
 	
 }
