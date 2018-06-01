@@ -12,12 +12,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+@Setter
+@Getter
 @Entity
 public class Answer {
 	
 	
 	public static final String FIELD_QUESTION = "question";
-	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
@@ -27,24 +34,10 @@ public class Answer {
 	@Column(name = "ANSWER")
 	private String answer;
 	
-	@Column(name = "CORRECT")
-	private boolean correct;
-	
-	
-	
+	@Column(name = "CORRECT", columnDefinition = "TINYINT")
+	private Boolean correct;
 	
 	@JoinColumn(name = FIELD_QUESTION)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Question question;
-
-
-
-	
-	/*
-	@JoinColumn(name = FIELD_COURSE)
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Course course;
-     */
-	
-	//Falta acotar de tal forma que solo se puedan generar 4 respuestas?
 }

@@ -83,8 +83,7 @@ public class QuestionController {
 	       Answer answer = questionPostAnswerMapper.dtoToModel(dto);
 	         
 		if (questionService.findById(id).isPresent()) {
-			Optional <Question> question;
-			question = questionService.findById(id);
+			Optional <Question> question = questionService.findById(id);
 			questionService.añadirRespuestas(question.get(), answer);
 		}
 	

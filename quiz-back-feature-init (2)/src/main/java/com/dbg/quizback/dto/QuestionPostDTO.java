@@ -1,8 +1,8 @@
 package com.dbg.quizback.dto;
 
-import java.util.List;
 
-import com.dbg.quizback.model.Answer;
+
+
 import com.dbg.quizback.model.Dificulty;
 
 import lombok.Data;
