@@ -12,5 +12,5 @@ public class QuestionPostDTO extends QuestionDTO {
 
 	   private String statement;
 	   private Dificulty dificulty;
-	   private List<Answer> respuestas;
+	  
 }

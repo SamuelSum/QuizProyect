@@ -9,4 +9,6 @@ public class AnswerDTO implements Serializable {
 
 	
 	private String answer;
+	private boolean correct;
+	
 }

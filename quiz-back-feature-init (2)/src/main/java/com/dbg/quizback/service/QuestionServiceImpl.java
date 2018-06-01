@@ -1,5 +1,6 @@
 package com.dbg.quizback.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dbg.quizback.dao.QuestionDAO;
+import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Question;
 
 @Service
@@ -17,6 +19,9 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Autowired
 	QuestionDAO questionDao;
+	
+	@Autowired
+	AnswerService answerService;
 	
 	
 	@Override
@@ -53,11 +58,24 @@ public class QuestionServiceImpl implements QuestionService {
 
 		
 	}
-
+/*
 	@Override
-	public Optional<Question> findAnswerById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void añadirRespuestas(Question question) {
+		Question q = question;
+		answerService.create4Answer(q.getAnswers());
+		questionDao.save(q);
 	}
+*/
+	@Override
+	public void añadirRespuestas(Question question, Answer answer) {
+		Question q = question;
+		answerService.create(answer);
+		
+		
+		questionDao.save(q);
+		
+	}
+
+
 
 }
