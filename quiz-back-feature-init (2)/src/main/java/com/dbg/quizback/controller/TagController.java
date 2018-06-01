@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dbg.quizback.component.mapper.tag.TagMapper;
 import com.dbg.quizback.component.mapper.tag.TagPostMapper;
 import com.dbg.quizback.service.TagService;
-import com.dbg.quizback.service.UserService;
 import com.dbg.quizback.dto.TagDTO;
 import com.dbg.quizback.dto.TagPostDTO;
 import com.dbg.quizback.model.Tag;

@@ -1,31 +1,27 @@
 package com.dbg.quizback.controller;
 
-import java.util.List;
+
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dbg.quizback.component.mapper.answer.AnswerMapper;
 import com.dbg.quizback.component.mapper.question.QuestionMapper;
 import com.dbg.quizback.component.mapper.question.QuestionPostAnswerMapper;
 import com.dbg.quizback.component.mapper.question.QuestionPostMapper;
-import com.dbg.quizback.dto.AnswerDTO;
 import com.dbg.quizback.dto.QuestionDTO;
 import com.dbg.quizback.dto.QuestionPostAnswerDTO;
 import com.dbg.quizback.dto.QuestionPostDTO;
 import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Question;
-import com.dbg.quizback.model.User;
 import com.dbg.quizback.service.QuestionService;
 
 @RestController
@@ -86,7 +82,7 @@ public class QuestionController {
 	        Answer answer = questionPostAnswerMapper.dtoToModel(dto);
 	         
 		if (questionService.findById(id).isPresent()) {
-			Optional<Question> question;
+			Optional <Question> question;
 			question = questionService.findById(id);
 			questionService.añadirRespuestas(question.get(), answer);
 		}

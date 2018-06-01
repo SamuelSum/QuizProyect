@@ -1,12 +1,11 @@
 package com.dbg.quizback.component.mapper.tag;
 
-import java.util.List;
 
-import org.dozer.DozerBeanMapper;
+
+
 import org.springframework.stereotype.Component;
 
 import com.dbg.quizback.component.mapper.AbstractMapper;
-import com.dbg.quizback.dto.TagDTO;
 import com.dbg.quizback.dto.TagPostDTO;
 import com.dbg.quizback.model.Tag;
 
