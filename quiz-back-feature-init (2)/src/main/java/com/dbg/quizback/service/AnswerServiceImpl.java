@@ -1,6 +1,6 @@
 package com.dbg.quizback.service;
 
-import java.util.List;
+
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.dbg.quizback.dao.AnswerDAO;
 import com.dbg.quizback.model.Answer;
-import com.dbg.quizback.model.Question;
+
 
 @Service
 public class AnswerServiceImpl implements AnswerService {

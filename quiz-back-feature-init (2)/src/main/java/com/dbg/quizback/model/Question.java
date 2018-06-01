@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.Getter;
@@ -48,7 +47,6 @@ public class Question {
 	private Dificulty dificulty;
 	
 
-	
 	@OneToMany(fetch = FetchType.LAZY)
 	@Column(name = "ID_ANSWER")
 	private List<Answer> answers;
