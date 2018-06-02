@@ -3,7 +3,7 @@ package com.dbg.quizback.component.mapper.user;
 import org.springframework.stereotype.Component;
 
 import com.dbg.quizback.component.mapper.AbstractMapper;
-import com.dbg.quizback.dto.UserIdDTO;
+import com.dbg.quizback.dto.userDTOs.UserIdDTO;
 import com.dbg.quizback.model.User;
 
 @Component

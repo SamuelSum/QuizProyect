@@ -1,4 +1,4 @@
-package com.dbg.quizback.dto;
+package com.dbg.quizback.dto.courseDTOs;
 
 import java.io.Serializable;
 import java.util.Date;

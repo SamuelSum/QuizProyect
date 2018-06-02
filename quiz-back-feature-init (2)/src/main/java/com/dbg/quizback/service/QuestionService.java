@@ -10,7 +10,9 @@ public interface QuestionService extends AbstractCRUDService<Question, Integer>{
 
 	//public void añadirRespuestas(Question question);
 
-	public void joinAnswerWithQuestion(Question question, Answer answer);
+	public void joinAnswerWithQuestion (Question question, Answer answer);
+
+	Question create(Question t, Integer dificultyLevel);
 
 
 	

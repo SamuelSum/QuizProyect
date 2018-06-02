@@ -18,9 +18,9 @@ import com.dbg.quizback.component.mapper.answer.AnswerMapper;
 import com.dbg.quizback.component.mapper.question.QuestionMapper;
 import com.dbg.quizback.component.mapper.question.QuestionPostAnswerMapper;
 import com.dbg.quizback.component.mapper.question.QuestionPostMapper;
-import com.dbg.quizback.dto.QuestionDTO;
-import com.dbg.quizback.dto.QuestionPostAnswerDTO;
-import com.dbg.quizback.dto.QuestionPostDTO;
+import com.dbg.quizback.dto.questionDTOs.QuestionDTO;
+import com.dbg.quizback.dto.questionDTOs.QuestionPostAnswerDTO;
+import com.dbg.quizback.dto.questionDTOs.QuestionPostDTO;
 import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Question;
 import com.dbg.quizback.service.QuestionService;
@@ -66,6 +66,11 @@ public class QuestionController {
 		return questionPostMapper.modelToDto(createQuestion);
 		
 	}
+	/*
+	//Para añadir la dificultad a una pregunta concreta (por su 'id')
+	@RequestMapping(value = "/{id}/dificulty", method = RequestMethod.PUT)
+	public void update(@PathVariable("id") Integer id,@RequestBody QuestionPostDificultyDTO dto))
+	*/
 	
 	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE })
 	public void delete(@PathVariable("id") Integer id,@RequestBody QuestionDTO dto) {

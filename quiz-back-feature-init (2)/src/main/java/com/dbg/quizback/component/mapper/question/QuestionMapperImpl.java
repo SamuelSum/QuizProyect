@@ -3,7 +3,7 @@ package com.dbg.quizback.component.mapper.question;
 import org.springframework.stereotype.Component;
 
 import com.dbg.quizback.component.mapper.AbstractMapper;
-import com.dbg.quizback.dto.QuestionDTO;
+import com.dbg.quizback.dto.questionDTOs.QuestionDTO;
 import com.dbg.quizback.model.Question;
 
 @Component

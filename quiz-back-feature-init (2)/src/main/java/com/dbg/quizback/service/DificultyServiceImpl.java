@@ -19,12 +19,6 @@ public class DificultyServiceImpl implements DificultyService {
 	DificultyDAO dificultyDao;
 	
 	@Override
-	public Dificulty create(Dificulty t) {
-		// TODO Auto-generated method stub
-		return dificultyDao.save(t);
-	}
-
-	@Override
 	public void update(Dificulty t) {
 		dificultyDao.save(t);
 	}
@@ -47,6 +41,21 @@ public class DificultyServiceImpl implements DificultyService {
 		dificultyDao.delete(t);
 		
 	}
+
+	@Override
+	public Dificulty create(Dificulty t) {
+		// TODO Auto-generated method stub
+		return dificultyDao.save(t);
+	}
+
+	@Override
+	public Dificulty UpdateDifLevel(Dificulty d, Integer dificultyLevel) {
+		d.setDificultyLevel(dificultyLevel);
+		return dificultyDao.save(d);
+		
+	}
+
+
 	
 
 }

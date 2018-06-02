@@ -3,7 +3,7 @@ package com.dbg.quizback.component.mapper.tag;
 import org.springframework.stereotype.Component;
 
 import com.dbg.quizback.component.mapper.AbstractMapper;
-import com.dbg.quizback.dto.TagDTO;
+import com.dbg.quizback.dto.tagDTOs.TagDTO;
 import com.dbg.quizback.model.Tag;
 
 @Component

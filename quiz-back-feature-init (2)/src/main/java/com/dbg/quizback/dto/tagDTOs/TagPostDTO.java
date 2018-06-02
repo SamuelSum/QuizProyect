@@ -1,4 +1,4 @@
-package com.dbg.quizback.dto;
+package com.dbg.quizback.dto.tagDTOs;
 
 import java.io.Serializable;
 

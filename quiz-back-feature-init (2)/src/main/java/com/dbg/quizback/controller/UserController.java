@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dbg.quizback.component.mapper.user.UserGenericMapper;
 import com.dbg.quizback.component.mapper.user.UserIdMapper;
-import com.dbg.quizback.dto.UserGenericDTO;
-import com.dbg.quizback.dto.UserIdDTO;
+import com.dbg.quizback.dto.userDTOs.UserGenericDTO;
+import com.dbg.quizback.dto.userDTOs.UserIdDTO;
 import com.dbg.quizback.model.User;
 import com.dbg.quizback.service.UserService;
 

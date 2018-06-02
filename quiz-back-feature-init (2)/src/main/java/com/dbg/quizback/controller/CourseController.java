@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dbg.quizback.component.mapper.course.CourseMapper;
 import com.dbg.quizback.component.mapper.course.CoursePostMapper;
-import com.dbg.quizback.dto.CourseDTO;
-import com.dbg.quizback.dto.CoursePostDTO;
+import com.dbg.quizback.dto.courseDTOs.CourseDTO;
+import com.dbg.quizback.dto.courseDTOs.CoursePostDTO;
 import com.dbg.quizback.model.Course;
 import com.dbg.quizback.service.CourseService;
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.dbg.quizback.dao.QuestionDAO;
 import com.dbg.quizback.model.Answer;
+import com.dbg.quizback.model.Dificulty;
 import com.dbg.quizback.model.Question;
 
 @Service
@@ -29,9 +30,11 @@ public class QuestionServiceImpl implements QuestionService {
 	
 	
 	@Override
-	public Question create(Question t) {
+	public Question create(Question t, Integer dificultyLevel) {
 		Question question = t;
-		dificultyService.create(question.getDificulty());
+		Dificulty d = dificultyService.create(question.getDificulty());
+		dificultyService.UpdateDifLevel(d, dificultyLevel);;
+		t.setDificulty(d); 		
         return questionDao.save(t);
 	}
 
@@ -73,6 +76,13 @@ public class QuestionServiceImpl implements QuestionService {
 		questionDao.save(question);
 		
 	}
+
+	@Override
+	public Question create(Question t) {
+		
+		return questionDao.save(t);
+	}
+
 
 
 
