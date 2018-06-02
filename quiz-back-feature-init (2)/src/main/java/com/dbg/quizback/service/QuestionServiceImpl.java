@@ -68,8 +68,10 @@ public class QuestionServiceImpl implements QuestionService {
 
 		answerService.create(question, answer);
 		List<Answer> answers = question.getAnswers();
+		if (answers.size()<4) {
 		answers.add(answer);
 		questionDao.save(question);
+		}
 
 	}
 

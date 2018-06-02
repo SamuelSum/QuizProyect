@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dbg.quizback.component.mapper.answer.AnswerMapper;
 import com.dbg.quizback.component.mapper.dificulty.DificultyMapper;
 import com.dbg.quizback.component.mapper.question.QuestionMapper;
-import com.dbg.quizback.component.mapper.question.QuestionPostAnswerMapper;
 import com.dbg.quizback.component.mapper.question.QuestionPostMapper;
+import com.dbg.quizback.component.mapper.question.QuestionPutAnswerMapper;
 import com.dbg.quizback.dto.DificultyDTO;
 import com.dbg.quizback.dto.questionDTOs.QuestionDTO;
-import com.dbg.quizback.dto.questionDTOs.QuestionPostAnswerDTO;
 import com.dbg.quizback.dto.questionDTOs.QuestionPostDTO;
+import com.dbg.quizback.dto.questionDTOs.QuestionPutAnswerDTO;
 import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Dificulty;
 import com.dbg.quizback.model.Question;
@@ -45,7 +45,7 @@ public class QuestionController {
 	AnswerMapper answerMapper;
 	
 	@Autowired
-	QuestionPostAnswerMapper questionPostAnswerMapper;
+	QuestionPutAnswerMapper questionPutAnswerMapper;
 	
 	@Autowired
 	DificultyMapper dificultyMapper;
@@ -97,8 +97,8 @@ public class QuestionController {
 	
 	//primero lo hago y luego me planteo cambar de nuevo los DTOs
 	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT })
-    public void update(@PathVariable("id") Integer id,@RequestBody QuestionPostAnswerDTO dto) {
-	       Answer answer = questionPostAnswerMapper.dtoToModel(dto);
+    public void update(@PathVariable("id") Integer id,@RequestBody QuestionPutAnswerDTO dto) {
+	       Answer answer = questionPutAnswerMapper.dtoToModel(dto);
 	         
 		if (questionService.findById(id).isPresent()) {
 			Optional <Question> question = questionService.findById(id);

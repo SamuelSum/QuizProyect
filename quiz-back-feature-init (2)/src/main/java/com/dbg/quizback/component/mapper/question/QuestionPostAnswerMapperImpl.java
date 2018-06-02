@@ -5,16 +5,16 @@ package com.dbg.quizback.component.mapper.question;
 import org.springframework.stereotype.Component;
 
 import com.dbg.quizback.component.mapper.AbstractMapper;
-import com.dbg.quizback.dto.questionDTOs.QuestionPostAnswerDTO;
+import com.dbg.quizback.dto.questionDTOs.QuestionPutAnswerDTO;
 import com.dbg.quizback.model.Answer;
 
 @Component
-public class QuestionPostAnswerMapperImpl  extends AbstractMapper<Answer, QuestionPostAnswerDTO> implements QuestionPostAnswerMapper  {
+public class QuestionPostAnswerMapperImpl  extends AbstractMapper<Answer, QuestionPutAnswerDTO> implements QuestionPutAnswerMapper  {
 
 	@Override
-	public Class<? extends QuestionPostAnswerDTO> dtoClazz() {
+	public Class<? extends QuestionPutAnswerDTO> dtoClazz() {
 		// TODO Auto-generated method stub
-		return QuestionPostAnswerDTO.class;
+		return QuestionPutAnswerDTO.class;
 	}
 
 	@Override

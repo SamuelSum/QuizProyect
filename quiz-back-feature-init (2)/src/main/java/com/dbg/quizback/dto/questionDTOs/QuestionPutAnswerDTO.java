@@ -7,7 +7,7 @@ import com.dbg.quizback.model.Answer;
 import lombok.Data;
 
 @Data
-public class QuestionPostAnswerDTO implements Serializable {
+public class QuestionPutAnswerDTO implements Serializable {
 
 	private String answer;
 	private Boolean correct;
