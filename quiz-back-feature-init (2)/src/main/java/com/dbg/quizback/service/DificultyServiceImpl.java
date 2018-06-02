@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 
 import com.dbg.quizback.dao.DificultyDAO;
 import com.dbg.quizback.model.Dificulty;
+import com.dbg.quizback.model.Question;
 
 @Service
 public class DificultyServiceImpl implements DificultyService {
 
 	@Autowired
 	DificultyDAO dificultyDao;
-	
+
 	@Override
 	public void update(Dificulty t) {
 		dificultyDao.save(t);
@@ -39,23 +40,20 @@ public class DificultyServiceImpl implements DificultyService {
 	@Override
 	public void delete(Dificulty t) {
 		dificultyDao.delete(t);
-		
-	}
 
-	@Override
-	public Dificulty create(Dificulty t) {
-		// TODO Auto-generated method stub
-		return dificultyDao.save(t);
 	}
 
 	@Override
 	public Dificulty UpdateDifLevel(Dificulty d, Integer dificultyLevel) {
 		d.setDificultyLevel(dificultyLevel);
 		return dificultyDao.save(d);
-		
+
 	}
 
+	@Override
+	public Dificulty create(Dificulty t) {
 
-	
+		return dificultyDao.save(t);
+	}
 
 }

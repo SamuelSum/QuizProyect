@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class DificultyDTO implements Serializable {
 	
-	private Integer idDificulty;
+	private Integer dificultyLevel;
 	
 
 }

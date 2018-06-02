@@ -15,13 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dbg.quizback.component.mapper.answer.AnswerMapper;
+import com.dbg.quizback.component.mapper.dificulty.DificultyMapper;
 import com.dbg.quizback.component.mapper.question.QuestionMapper;
 import com.dbg.quizback.component.mapper.question.QuestionPostAnswerMapper;
 import com.dbg.quizback.component.mapper.question.QuestionPostMapper;
+import com.dbg.quizback.dto.DificultyDTO;
 import com.dbg.quizback.dto.questionDTOs.QuestionDTO;
 import com.dbg.quizback.dto.questionDTOs.QuestionPostAnswerDTO;
 import com.dbg.quizback.dto.questionDTOs.QuestionPostDTO;
 import com.dbg.quizback.model.Answer;
+import com.dbg.quizback.model.Dificulty;
 import com.dbg.quizback.model.Question;
 import com.dbg.quizback.service.QuestionService;
 
@@ -44,6 +47,8 @@ public class QuestionController {
 	@Autowired
 	QuestionPostAnswerMapper questionPostAnswerMapper;
 	
+	@Autowired
+	DificultyMapper dificultyMapper;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public Set<QuestionDTO> findAll (@RequestParam(defaultValue = "0", required = false) Integer page,
@@ -66,11 +71,19 @@ public class QuestionController {
 		return questionPostMapper.modelToDto(createQuestion);
 		
 	}
-	/*
+	
 	//Para añadir la dificultad a una pregunta concreta (por su 'id')
 	@RequestMapping(value = "/{id}/dificulty", method = RequestMethod.PUT)
-	public void update(@PathVariable("id") Integer id,@RequestBody QuestionPostDificultyDTO dto))
-	*/
+	public void update(@PathVariable("id") Integer id,@RequestBody DificultyDTO dto) {
+		Dificulty dificulty = dificultyMapper.dtoToModel(dto);
+		
+		if (questionService.findById(id).isPresent()) {
+			Optional <Question> question = questionService.findById(id);
+			questionService.joinDificultyWithQuestion(question.get(), dificulty);
+		}
+	
+	}
+	
 	
 	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE })
 	public void delete(@PathVariable("id") Integer id,@RequestBody QuestionDTO dto) {
