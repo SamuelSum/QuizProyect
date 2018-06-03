@@ -1,13 +1,19 @@
 package com.dbg.quizback.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dbg.quizback.component.mapper.quiz.QuizGetMapper;
 import com.dbg.quizback.component.mapper.quiz.QuizMapper;
-import com.dbg.quizback.dto.QuizDTO;
+import com.dbg.quizback.dto.quizDTOs.QuizDTO;
+import com.dbg.quizback.dto.quizDTOs.QuizGetDTO;
 import com.dbg.quizback.model.Quiz;
 import com.dbg.quizback.service.QuizService;
 
@@ -19,7 +25,12 @@ public class QuizController {
 	QuizMapper quizMapper;
 	
 	@Autowired
+	QuizGetMapper quizGetMapper;
+	
+	@Autowired
 	QuizService quizService;
+	
+
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public QuizDTO create(@RequestBody QuizDTO dto) {
@@ -29,8 +40,12 @@ public class QuizController {
 
 	}
 	
-	//public QuizDTO
-	
+	@RequestMapping(method = RequestMethod.GET)
+	public List<QuizGetDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+			@RequestParam(defaultValue = "10", required = false) Integer size){
+		final List<Quiz> quizs = quizService.findAll(PageRequest.of(page, size));
+		return quizGetMapper.modelToDto(quizs);
+	}
 	
 	
 }

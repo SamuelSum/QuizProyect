@@ -3,16 +3,16 @@ package com.dbg.quizback.component.mapper.quiz;
 import org.springframework.stereotype.Component;
 
 import com.dbg.quizback.component.mapper.AbstractMapper;
-import com.dbg.quizback.dto.quizDTOs.QuizDTO;
+import com.dbg.quizback.dto.quizDTOs.QuizGetDTO;
 import com.dbg.quizback.model.Quiz;
 
 @Component
-public class QuizMapperImpl extends AbstractMapper<Quiz, QuizDTO> implements QuizMapper {
+public class QuizGetMapperImpl extends AbstractMapper<Quiz, QuizGetDTO> implements QuizGetMapper {
 
 	@Override
-	public Class<? extends QuizDTO> dtoClazz() {
+	public Class<? extends QuizGetDTO> dtoClazz() {
 		// TODO Auto-generated method stub
-		return QuizDTO.class;
+		return QuizGetDTO.class;
 	}
 
 	@Override
