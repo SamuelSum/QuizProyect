@@ -1,5 +1,6 @@
 package com.dbg.quizback.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -33,9 +34,9 @@ public class UserController {
 	UserIdMapper userIdMapper;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public Set<UserGenericDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+	public List<UserGenericDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
-		final Set<User> users = userService.findAll(PageRequest.of(page, size));
+		final List<User> users = userService.findAll(PageRequest.of(page, size));
 		return userGenericMapper.modelToDto(users);
 	}
 

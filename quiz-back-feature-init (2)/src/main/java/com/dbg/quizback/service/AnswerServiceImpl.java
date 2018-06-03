@@ -1,6 +1,7 @@
 package com.dbg.quizback.service;
 
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,10 +45,10 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public Set<Answer> findAll(Pageable p) {
+	public List<Answer> findAll(Pageable p) {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
-		return answerDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toSet());
+		return answerDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toList());
 	}
 
 	@Override
@@ -61,6 +62,12 @@ public class AnswerServiceImpl implements AnswerService {
 		answer.setQuestion(question);
         answerDao.save(answer);
 		
+	}
+
+	@Override
+	public List<Answer> findByIdQuestion(Question question) {
+		List<Answer> answers = answerDao.findAllByQuestion(question);
+		return answers;
 	}
 	
 }

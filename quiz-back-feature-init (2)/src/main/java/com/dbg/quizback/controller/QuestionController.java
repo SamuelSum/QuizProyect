@@ -1,9 +1,8 @@
 package com.dbg.quizback.controller;
 
-
-
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -31,62 +30,68 @@ import com.dbg.quizback.service.QuestionService;
 @RestController
 @RequestMapping(value = "/question")
 public class QuestionController {
-	
+
 	@Autowired
 	QuestionService questionService;
-	
+
 	@Autowired
 	QuestionMapper questionMapper;
-	
+
 	@Autowired
 	QuestionPostMapper questionPostMapper;
-	
+
 	@Autowired
 	AnswerMapper answerMapper;
-	
+
 	@Autowired
 	QuestionPutAnswerMapper questionPutAnswerMapper;
-	
+
 	@Autowired
 	DificultyMapper dificultyMapper;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
-	public Set<QuestionDTO> findAll (@RequestParam(defaultValue = "0", required = false) Integer page,
-			@RequestParam(defaultValue = "10", required =  false) Integer size){
-		final Set<Question> questions = questionService.findAll(PageRequest.of(page, size));
-		return questionMapper.modelToDto(questions);
-	}
-	
-	@RequestMapping(value = "/{id}")
-	public QuestionDTO findById(@PathVariable("id") Integer id) {
+	public List<QuestionDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+			@RequestParam(defaultValue = "10", required = false) Integer size) {
+		final List<Question> questions = questionService.findAll(PageRequest.of(page, size));
+		//final List<Question> q = questionService.getAnswerByQuestion(questions);
 		
+		//List <QuestionDTO> lq = questionMapper.modelToDto(q);
+		
+		
+		return questionMapper.modelToDto(questions);
+		
+	}
+
+	@RequestMapping(value = "/{id}", method= RequestMethod.GET)
+	public QuestionDTO findById(@PathVariable("id") Integer id) {
+
 		final Optional<Question> question = questionService.findById(id);
+		
+		questionService.getAnswerByOneQuestion(question.get());
 		return questionMapper.modelToDto(question.get());
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public QuestionPostDTO create (@RequestBody QuestionPostDTO dto) {
+	public QuestionPostDTO create(@RequestBody QuestionPostDTO dto) {
 		final Question question = questionPostMapper.dtoToModel(dto);
 		final Question createQuestion = questionService.create(question);
 		return questionPostMapper.modelToDto(createQuestion);
-		
+
 	}
-	
-	//Para añadir la dificultad a una pregunta concreta (por su 'id')
+
 	@RequestMapping(value = "/{id}/dificulty", method = RequestMethod.PUT)
-	public void update(@PathVariable("id") Integer id,@RequestBody DificultyDTO dto) {
+	public void update(@PathVariable("id") Integer id, @RequestBody DificultyDTO dto) {
 		Dificulty dificulty = dificultyMapper.dtoToModel(dto);
-		
+
 		if (questionService.findById(id).isPresent()) {
-			Optional <Question> question = questionService.findById(id);
+			Optional<Question> question = questionService.findById(id);
 			questionService.joinDificultyWithQuestion(question.get(), dificulty);
 		}
-	
+
 	}
-	
-	
+
 	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE })
-	public void delete(@PathVariable("id") Integer id,@RequestBody QuestionDTO dto) {
+	public void delete(@PathVariable("id") Integer id, @RequestBody QuestionDTO dto) {
 		if (questionService.findById(id).isPresent()) {
 			Optional<Question> question;
 			question = questionService.findById(id);
@@ -94,18 +99,17 @@ public class QuestionController {
 
 		}
 	}
+
 	
-	//primero lo hago y luego me planteo cambar de nuevo los DTOs
 	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT })
-    public void update(@PathVariable("id") Integer id,@RequestBody QuestionPutAnswerDTO dto) {
-	       Answer answer = questionPutAnswerMapper.dtoToModel(dto);
-	         
+	public void update(@PathVariable("id") Integer id, @RequestBody QuestionPutAnswerDTO dto) {
+		Answer answer = questionPutAnswerMapper.dtoToModel(dto);
+
 		if (questionService.findById(id).isPresent()) {
-			Optional <Question> question = questionService.findById(id);
+			Optional<Question> question = questionService.findById(id);
 			questionService.joinAnswerWithQuestion(question.get(), answer);
 		}
-	
+
+	}
+
 }
-	 
-}
-	

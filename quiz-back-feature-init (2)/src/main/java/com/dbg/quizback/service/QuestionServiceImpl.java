@@ -50,10 +50,10 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Set<Question> findAll(Pageable p) {
+	public List<Question> findAll(Pageable p) {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
-		return questionDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toSet());
+		return questionDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toList());
 
 	}
 
@@ -90,4 +90,23 @@ public class QuestionServiceImpl implements QuestionService {
 
 	}
 
-}
+	@Override
+	public List<Question> getAnswerByQuestion(List<Question> questions) {
+	
+		int i;
+		for(i=0; i<questions.size(); i++) {
+			Question qAux = questions.get(i);
+			answerService.findByIdQuestion(qAux);
+			//questionsComplete.add(qAux);
+			questions.set(i, qAux);
+		}
+		
+		return questions;
+	}
+
+	@Override
+	public Question getAnswerByOneQuestion(Question question) {
+
+		answerService.findByIdQuestion(question);
+		return question;
+	}}

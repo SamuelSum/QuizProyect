@@ -1,5 +1,6 @@
 package com.dbg.quizback.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,10 +32,10 @@ public class DificultyServiceImpl implements DificultyService {
 	}
 
 	@Override
-	public Set<Dificulty> findAll(Pageable p) {
+	public List<Dificulty> findAll(Pageable p) {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
-		return dificultyDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toSet());
+		return dificultyDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toList());
 	}
 
 	@Override

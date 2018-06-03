@@ -1,5 +1,6 @@
 package com.dbg.quizback.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class AnswerController {
 	AnswerMapper answerMapper;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public  Set<AnswerDTO> findAll (@RequestParam(defaultValue = "0", required = false) Integer page,
+	public  List<AnswerDTO> findAll (@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue  = "10", required = false) Integer size){
-		final Set<Answer> answers = answerService.findAll(PageRequest.of(page, size));
+		final List<Answer> answers = answerService.findAll(PageRequest.of(page, size));
 		return answerMapper.modelToDto(answers);
 	}
 }

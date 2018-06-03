@@ -1,5 +1,6 @@
 package com.dbg.quizback.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,10 +38,10 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Set<Course> findAll(Pageable p) {
+	public List<Course> findAll(Pageable p) {
 		int page = p.getPageNumber();
 		int size = p.getPageSize();
-		return courseDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toSet());
+		return courseDao.findAll(PageRequest.of(page, size)).stream().collect(Collectors.toList());
 	}
 
 	@Override

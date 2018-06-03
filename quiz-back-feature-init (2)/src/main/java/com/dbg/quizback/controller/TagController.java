@@ -1,5 +1,6 @@
 package com.dbg.quizback.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -33,10 +34,10 @@ public class TagController {
 	TagPostMapper tagPostMapper;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public Set<TagDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
+	public List<TagDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
 		
-		final Set <Tag> tags = tagService.findAll(PageRequest.of(page, size));
+		final List <Tag> tags = tagService.findAll(PageRequest.of(page, size));
 		return tagMapper.modelToDto(tags);
 		
 	}
