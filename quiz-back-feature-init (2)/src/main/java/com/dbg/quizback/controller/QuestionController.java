@@ -67,7 +67,7 @@ public class QuestionController {
 
 		final Optional<Question> question = questionService.findById(id);
 		
-		questionService.getAnswerByOneQuestion(question.get());
+		//questionService.getAnswerByOneQuestion(question.get());
 		return questionMapper.modelToDto(question.get());
 	}
 
@@ -79,6 +79,10 @@ public class QuestionController {
 
 	}
 
+	//Pongo la dificultad en PUT, porque la dificultad dependerá aparte del enunciado,
+	//de las respuestas. Y he visto lógico establecer la dificuldad una vez tiene las 
+	//respuestas añadidas.
+	
 	@RequestMapping(value = "/{id}/dificulty", method = RequestMethod.PUT)
 	public void update(@PathVariable("id") Integer id, @RequestBody DificultyDTO dto) {
 		Dificulty dificulty = dificultyMapper.dtoToModel(dto);

@@ -42,10 +42,25 @@ public class QuestionMapperImpl extends AbstractMapper<Question, QuestionDTO> im
 		QuestionDTO dto = new QuestionDTO();
 		dto.setIdQuestion(q.getIdQuestion());
 		dto.setStatement(q.getStatement());
+		List<Answer> ans = answerService.findByIdQuestion(q);
+		dto.setRespuestas(answerMapper.modelToDto(ans));
+		return dto;
+	}
+	
+	/*
+	 * @Override
+	public QuestionDTO modelToDto (Question q) {
+		QuestionDTO dto = new QuestionDTO();
+		dto.setIdQuestion(q.getIdQuestion());
+		dto.setStatement(q.getStatement());
 		Optional<Answer> ans=answerService.findById(q.getAnswers().get(0).getIdAnswer());
 		dto.setRespuesta(answerMapper.modelToDto(ans.get()));
 		return dto;
 	}
+	
+	 */
+	
+	
 	
 	
 }

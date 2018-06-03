@@ -2,7 +2,7 @@ package com.dbg.quizback.dto.courseDTOs;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+
 
 import lombok.Data;
 import lombok.Getter;
@@ -13,9 +13,11 @@ import lombok.Setter;
 @Setter
 public class CoursePostDTO implements Serializable{
 	
-    // private Integer idCourse;
-	   private Date date;
-     //private List<Quiz> quiz;
+    
+	   
+	private static final long serialVersionUID = 142662363701287714L;
+	private Date date; // Recuerda que el formato es: yyyy-MM-dd
+     
 	
 	
 

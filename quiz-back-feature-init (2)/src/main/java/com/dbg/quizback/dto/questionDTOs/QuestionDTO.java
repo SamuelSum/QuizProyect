@@ -22,7 +22,7 @@ public class QuestionDTO implements Serializable {
 	private Integer idQuestion;
 	private String statement;
 //	private Dificulty dificulty;
-	private AnswerDTO respuesta;
+	private List<AnswerDTO> respuestas;
 
 	
 }
