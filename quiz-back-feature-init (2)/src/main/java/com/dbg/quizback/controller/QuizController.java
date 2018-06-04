@@ -16,10 +16,8 @@ import com.dbg.quizback.component.mapper.course.CourseMapper;
 import com.dbg.quizback.component.mapper.question.QuestionIdMapper;
 import com.dbg.quizback.component.mapper.quiz.QuizGetMapper;
 import com.dbg.quizback.component.mapper.quiz.QuizMapper;
-import com.dbg.quizback.dto.questionDTOs.QuestionIdDTO;
 import com.dbg.quizback.dto.quizDTOs.QuizDTO;
 import com.dbg.quizback.dto.quizDTOs.QuizGetDTO;
-import com.dbg.quizback.model.Question;
 import com.dbg.quizback.model.Quiz;
 import com.dbg.quizback.service.QuizService;
 

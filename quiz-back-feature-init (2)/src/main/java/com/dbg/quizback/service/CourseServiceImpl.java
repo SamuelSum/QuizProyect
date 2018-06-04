@@ -2,7 +2,6 @@ package com.dbg.quizback.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +17,22 @@ public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	CourseDAO courseDao;
-	
+
 	@Override
 	public Course create(Course t) {
-		
+
 		return courseDao.save(t);
 	}
 
 	@Override
 	public void update(Course t) {
 		courseDao.save(t);
-		
+
 	}
 
 	@Override
 	public Optional<Course> findById(Integer id) {
-		
+
 		return courseDao.findById(id);
 	}
 
@@ -47,8 +46,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public void delete(Course t) {
 		courseDao.delete(t);
-		
-		
+
 	}
 
 }

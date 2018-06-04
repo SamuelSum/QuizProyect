@@ -2,7 +2,6 @@ package com.dbg.quizback.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,9 +68,9 @@ public class QuestionServiceImpl implements QuestionService {
 
 		answerService.create(question, answer);
 		List<Answer> answers = question.getAnswers();
-		if (answers.size()<4) {
-		answers.add(answer);
-		questionDao.save(question);
+		if (answers.size() < 4) {
+			answers.add(answer);
+			questionDao.save(question);
 		}
 
 	}
@@ -93,15 +92,15 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public List<Question> getAnswerByQuestion(List<Question> questions) {
-	
+
 		int i;
-		for(i=0; i<questions.size(); i++) {
+		for (i = 0; i < questions.size(); i++) {
 			Question qAux = questions.get(i);
 			answerService.findByIdQuestion(qAux);
-			//questionsComplete.add(qAux);
+			// questionsComplete.add(qAux);
 			questions.set(i, qAux);
 		}
-		
+
 		return questions;
 	}
 
@@ -114,6 +113,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public List<Question> findByIdQuiz(Quiz quiz) {
-       List<Question> questions = questionDao.findAllByQuiz(quiz);
+		List<Question> questions = questionDao.findAllByQuiz(quiz);
 		return questions;
-	}}
+	}
+}

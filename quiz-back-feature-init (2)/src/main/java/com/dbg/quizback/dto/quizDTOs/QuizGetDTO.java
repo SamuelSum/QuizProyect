@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class QuizGetDTO implements Serializable {
-	
+
 	private static final long serialVersionUID = -7136155772673540212L;
 	private Integer idQuiz;
 	private List<QuestionDTO> questions;

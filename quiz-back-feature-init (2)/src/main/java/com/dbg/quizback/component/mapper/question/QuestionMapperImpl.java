@@ -1,8 +1,6 @@
 package com.dbg.quizback.component.mapper.question;
 
-
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,21 +13,20 @@ import com.dbg.quizback.model.Question;
 import com.dbg.quizback.service.AnswerService;
 
 @Component
-public class QuestionMapperImpl extends AbstractMapper<Question, QuestionDTO> implements QuestionMapper{
+public class QuestionMapperImpl extends AbstractMapper<Question, QuestionDTO> implements QuestionMapper {
 
-    @Autowired
+	@Autowired
 	AnswerMapper answerMapper;
-	//dto.setCourse(courseMapper.modelToDto(quiz.getCourse()));
+	// dto.setCourse(courseMapper.modelToDto(quiz.getCourse()));
 
-    @Autowired
-    AnswerService answerService;
-    
-    
+	@Autowired
+	AnswerService answerService;
+
 	@Override
 	public Class<? extends QuestionDTO> dtoClazz() {
-		//QuestionDTO dto = new QuestionDTO();
-		//dto.setRespuestas(answerMapper.modelToDto(quest));
-	     return QuestionDTO.class;
+		// QuestionDTO dto = new QuestionDTO();
+		// dto.setRespuestas(answerMapper.modelToDto(quest));
+		return QuestionDTO.class;
 	}
 
 	@Override
@@ -38,7 +35,7 @@ public class QuestionMapperImpl extends AbstractMapper<Question, QuestionDTO> im
 	}
 
 	@Override
-	public QuestionDTO modelToDto (Question q) {
+	public QuestionDTO modelToDto(Question q) {
 		QuestionDTO dto = new QuestionDTO();
 		dto.setIdQuestion(q.getIdQuestion());
 		dto.setStatement(q.getStatement());
@@ -46,21 +43,14 @@ public class QuestionMapperImpl extends AbstractMapper<Question, QuestionDTO> im
 		dto.setRespuestas(answerMapper.modelToDto(ans));
 		return dto;
 	}
-	
+
 	/*
-	 * @Override
-	public QuestionDTO modelToDto (Question q) {
-		QuestionDTO dto = new QuestionDTO();
-		dto.setIdQuestion(q.getIdQuestion());
-		dto.setStatement(q.getStatement());
-		Optional<Answer> ans=answerService.findById(q.getAnswers().get(0).getIdAnswer());
-		dto.setRespuesta(answerMapper.modelToDto(ans.get()));
-		return dto;
-	}
-	
+	 * @Override public QuestionDTO modelToDto (Question q) { QuestionDTO dto = new
+	 * QuestionDTO(); dto.setIdQuestion(q.getIdQuestion());
+	 * dto.setStatement(q.getStatement()); Optional<Answer>
+	 * ans=answerService.findById(q.getAnswers().get(0).getIdAnswer());
+	 * dto.setRespuesta(answerMapper.modelToDto(ans.get())); return dto; }
+	 * 
 	 */
-	
-	
-	
-	
+
 }

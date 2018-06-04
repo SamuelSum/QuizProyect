@@ -3,7 +3,6 @@ package com.dbg.quizback.controller;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,21 +52,14 @@ public class QuestionController {
 	public List<QuestionDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
 		final List<Question> questions = questionService.findAll(PageRequest.of(page, size));
-		//final List<Question> q = questionService.getAnswerByQuestion(questions);
-		
-		//List <QuestionDTO> lq = questionMapper.modelToDto(q);
-		
-		
 		return questionMapper.modelToDto(questions);
-		
+
 	}
 
-	@RequestMapping(value = "/{id}", method= RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public QuestionDTO findById(@PathVariable("id") Integer id) {
 
 		final Optional<Question> question = questionService.findById(id);
-		
-		//questionService.getAnswerByOneQuestion(question.get());
 		return questionMapper.modelToDto(question.get());
 	}
 
@@ -79,10 +71,6 @@ public class QuestionController {
 
 	}
 
-	//Pongo la dificultad en PUT, porque la dificultad dependerá aparte del enunciado,
-	//de las respuestas. Y he visto lógico establecer la dificuldad una vez tiene las 
-	//respuestas añadidas.
-	
 	@RequestMapping(value = "/{id}/dificulty", method = RequestMethod.PUT)
 	public void update(@PathVariable("id") Integer id, @RequestBody DificultyDTO dto) {
 		Dificulty dificulty = dificultyMapper.dtoToModel(dto);
@@ -104,7 +92,6 @@ public class QuestionController {
 		}
 	}
 
-	
 	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT })
 	public void update(@PathVariable("id") Integer id, @RequestBody QuestionPutAnswerDTO dto) {
 		Answer answer = questionPutAnswerMapper.dtoToModel(dto);

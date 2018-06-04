@@ -1,9 +1,7 @@
 package com.dbg.quizback.service;
 
-
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,30 +13,27 @@ import com.dbg.quizback.dao.AnswerDAO;
 import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Question;
 
-
 @Service
 public class AnswerServiceImpl implements AnswerService {
 
 	@Autowired
 	AnswerDAO answerDao;
-	
+
 	@Autowired
 	QuestionService questionService;
-	
-	
+
 	@Override
 	public Answer create(Answer t) {
 		return answerDao.save(t);
-		
+
 	}
 
 	@Override
 	public void update(Answer t) {
 		answerDao.save(t);
-		
+
 	}
 
-	
 	@Override
 	public Optional<Answer> findById(Integer id) {
 		return answerDao.findById(id);
@@ -54,14 +49,14 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public void delete(Answer t) {
 		answerDao.delete(t);
-		
+
 	}
 
 	@Override
 	public void create(Question question, Answer answer) {
 		answer.setQuestion(question);
-        answerDao.save(answer);
-		
+		answerDao.save(answer);
+
 	}
 
 	@Override
@@ -69,5 +64,5 @@ public class AnswerServiceImpl implements AnswerService {
 		List<Answer> answers = answerDao.findAllByQuestion(question);
 		return answers;
 	}
-	
+
 }

@@ -2,7 +2,6 @@ package com.dbg.quizback.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	UserDAO userDao;
 
 	//
-	
+
 	@Override
 	public User create(User t) {
 		return userDao.save(t);
@@ -29,7 +28,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void update(User t) {
 		userDao.save(t);
-		
+
 	}
 
 	@Override
@@ -47,8 +46,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(User t) {
 		userDao.delete(t);
-	
-		
+
 	}
 
 }

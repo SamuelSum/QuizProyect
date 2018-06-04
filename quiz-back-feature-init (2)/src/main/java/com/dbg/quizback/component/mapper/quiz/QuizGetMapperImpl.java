@@ -8,9 +8,7 @@ import org.springframework.stereotype.Component;
 import com.dbg.quizback.component.mapper.AbstractMapper;
 import com.dbg.quizback.component.mapper.course.CourseMapper;
 import com.dbg.quizback.component.mapper.question.QuestionMapper;
-import com.dbg.quizback.dto.courseDTOs.CourseDTO;
 import com.dbg.quizback.dto.quizDTOs.QuizGetDTO;
-import com.dbg.quizback.model.Course;
 import com.dbg.quizback.model.Question;
 import com.dbg.quizback.model.Quiz;
 import com.dbg.quizback.service.QuestionService;
@@ -20,13 +18,13 @@ public class QuizGetMapperImpl extends AbstractMapper<Quiz, QuizGetDTO> implemen
 
 	@Autowired
 	QuestionService questionService;
-	
+
 	@Autowired
 	QuestionMapper questionMapper;
-	
+
 	@Autowired
 	CourseMapper courseMapper;
-	
+
 	@Override
 	public Class<? extends QuizGetDTO> dtoClazz() {
 		// TODO Auto-generated method stub
@@ -38,17 +36,16 @@ public class QuizGetMapperImpl extends AbstractMapper<Quiz, QuizGetDTO> implemen
 		// TODO Auto-generated method stub
 		return Quiz.class;
 	}
-	
+
 	@Override
-	public QuizGetDTO modelToDto (Quiz q) {
+	public QuizGetDTO modelToDto(Quiz q) {
 		QuizGetDTO dto = new QuizGetDTO();
 		dto.setIdQuiz(q.getIdQuiz());
 		List<Question> questions = questionService.findByIdQuiz(q);
 		dto.setCourse(courseMapper.modelToDto(q.getCourse()));
 		dto.setQuestions(questionMapper.modelToDto(questions));
 		return dto;
-		
+
 	}
-	
 
 }

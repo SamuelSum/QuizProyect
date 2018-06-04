@@ -17,21 +17,20 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Quiz {
-	
+
 	public static final String FIELD_COURSE = "course";
-	
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int idQuiz;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = Result.FIELD_QUIZ)
 	private List<Result> result;
-	
+
 	@JoinColumn(name = FIELD_COURSE)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Course course;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = Tag.FIELD_QUIZ)
 	private List<Tag> tags;
 

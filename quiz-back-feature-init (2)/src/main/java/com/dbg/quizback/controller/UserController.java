@@ -2,7 +2,6 @@ package com.dbg.quizback.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -29,10 +28,10 @@ public class UserController {
 
 	@Autowired
 	UserGenericMapper userGenericMapper;
-	
+
 	@Autowired
 	UserIdMapper userIdMapper;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public List<UserGenericDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
 			@RequestParam(defaultValue = "10", required = false) Integer size) {
@@ -46,7 +45,6 @@ public class UserController {
 		final Optional<User> user = userService.findById(id);
 		return userIdMapper.modelToDto(user.get());
 	}
-	 
 
 	@RequestMapping(method = RequestMethod.POST)
 	public UserGenericDTO create(@RequestBody UserGenericDTO dto) {
@@ -63,7 +61,6 @@ public class UserController {
 
 	}
 
-	
 	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE })
 	public void delete(@PathVariable("id") Integer id) {
 		if (userService.findById(id).isPresent()) {
@@ -73,7 +70,6 @@ public class UserController {
 
 		}
 
-		
 	}
 
 }
