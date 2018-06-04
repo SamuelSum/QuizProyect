@@ -28,6 +28,9 @@ public class Course {
 	@Column(name = "ID_COURSE")
 	private Integer idCourse;
 	
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<User> users;
+	
 	@Column(name = "DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;

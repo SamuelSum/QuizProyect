@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dbg.quizback.component.mapper.course.CourseMapper;
 import com.dbg.quizback.component.mapper.course.CoursePostMapper;
+import com.dbg.quizback.component.mapper.user.UserMapper;
 import com.dbg.quizback.dto.courseDTOs.CourseDTO;
 import com.dbg.quizback.dto.courseDTOs.CoursePostDTO;
+import com.dbg.quizback.dto.userDTOs.UserDTO;
 import com.dbg.quizback.model.Course;
+import com.dbg.quizback.model.User;
 import com.dbg.quizback.service.CourseService;
 
 @RestController
@@ -31,6 +34,9 @@ public class CourseController {
 
 	@Autowired
 	CourseMapper courseMapper;
+	
+	@Autowired
+	UserMapper userMapper;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<CourseDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
@@ -54,6 +60,18 @@ public class CourseController {
 			course = courseService.findById(id);
 			courseService.delete(course.get());
 		}
+	}
+	
+	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT })
+	public void update(@PathVariable("id") Integer id, @RequestBody UserDTO dto) {
+		User user = userMapper.dtoToModel(dto);
+		
+		if(courseService.findById(id).isPresent()) {
+			Optional<Course> course = courseService.findById(id);
+			course.get().getUsers().add(user);
+		}
+		
+		
 	}
 
 }
