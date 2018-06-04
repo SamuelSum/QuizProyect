@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dbg.quizback.component.mapper.course.CourseMapper;
 import com.dbg.quizback.component.mapper.question.QuestionIdMapper;
 import com.dbg.quizback.component.mapper.quiz.QuizGetMapper;
 import com.dbg.quizback.component.mapper.quiz.QuizMapper;
-import com.dbg.quizback.dto.questionDTOs.QuestionPutAnswerDTO;
+import com.dbg.quizback.dto.questionDTOs.QuestionIdDTO;
 import com.dbg.quizback.dto.quizDTOs.QuizDTO;
 import com.dbg.quizback.dto.quizDTOs.QuizGetDTO;
-import com.dbg.quizback.dto.quizDTOs.QuizPutQuestionsDTO;
-import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Question;
 import com.dbg.quizback.model.Quiz;
 import com.dbg.quizback.service.QuizService;
@@ -30,18 +29,19 @@ public class QuizController {
 
 	@Autowired
 	QuizMapper quizMapper;
-	
+
 	@Autowired
 	QuizGetMapper quizGetMapper;
-	
+
 	@Autowired
 	QuestionIdMapper questionIdMapper;
-	
+
 	@Autowired
 	QuizService quizService;
-	
 
-	
+	@Autowired
+	CourseMapper CourseMapper;
+
 	@RequestMapping(method = RequestMethod.POST)
 	public QuizDTO create(@RequestBody QuizDTO dto) {
 		final Quiz quiz = quizMapper.dtoToModel(dto);
@@ -49,35 +49,24 @@ public class QuizController {
 		return quizMapper.modelToDto(createQuiz);
 
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public List<QuizGetDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
-			@RequestParam(defaultValue = "10", required = false) Integer size){
+			@RequestParam(defaultValue = "10", required = false) Integer size) {
 		final List<Quiz> quizs = quizService.findAll(PageRequest.of(page, size));
 		return quizGetMapper.modelToDto(quizs);
 	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public QuizGetDTO findById(@PathVariable("id") Integer id) {
+		final Optional<Quiz> quiz = quizService.findById(id);
+		return quizGetMapper.modelToDto(quiz.get());
+	}
+
+	@RequestMapping(value = "/{id}/question/{idQuestion}", method = { RequestMethod.PUT })
+	public void update(@PathVariable("id") Integer id, @PathVariable("idQuestion") Integer idQuestion) {
 	
-	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT})
-	public void update(@PathVariable("id") Integer id, @RequestBody QuizPutQuestionsDTO dto) {
-		
-		//List <Question> questions = questionIdMapper.dtoToModel(dtos);
+		quizService.joinQuestionWithQuiz(id, idQuestion);
 		
 	}
 }
-	
-	
-	/*
-	 * 
-	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT })
-	public void update(@PathVariable("id") Integer id, @RequestBody QuestionPutAnswerDTO dto) {
-		Answer answer = questionPutAnswerMapper.dtoToModel(dto);
-
-		if (questionService.findById(id).isPresent()) {
-			Optional<Question> question = questionService.findById(id);
-			questionService.joinAnswerWithQuestion(question.get(), answer);
-		}
-
-	}
-	 */
-	
-

@@ -2,17 +2,14 @@ package com.dbg.quizback.dto.courseDTOs;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-
-import com.dbg.quizback.model.Quiz;
 
 import lombok.Data;
 
 @Data
-public class CourseDTO implements Serializable{
+public class CourseDTO implements Serializable {
 
-	
-	   private Integer idCourse;
-	   private Date date;
-    //   private List<Quiz> quiz;
+	private static final long serialVersionUID = 6543743459395572830L;
+	private Integer idCourse;
+	private Date date;
+
 }

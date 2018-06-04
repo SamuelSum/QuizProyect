@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dbg.quizback.dao.QuizDAO;
+import com.dbg.quizback.model.Question;
 import com.dbg.quizback.model.Quiz;
 
 @Service
@@ -18,9 +19,19 @@ public class QuizServiceImpl implements QuizService {
 	@Autowired
 	QuizDAO quizDao;
 	
+	@Autowired
+	QuestionService questionService;
+	
+	@Autowired
+	CourseService courseService;
+	
+	@Autowired
+	QuizService quizService;
+	
+	
 	@Override
 	public Quiz create(Quiz t) {
-		
+		courseService.create(t.getCourse());
 		return quizDao.save(t);
 	}
 
@@ -48,5 +59,20 @@ public class QuizServiceImpl implements QuizService {
 	   quizDao.delete(t);
 		
 	}
+
+	@Override
+	public void joinQuestionWithQuiz(Integer id, Integer idQuestion) {
+		
+		Optional<Question> real = questionService.findById(idQuestion);
+		Optional<Quiz> quiz = quizService.findById(id);
+		List <Question> lq = quiz.get().getQuestions();
+		lq.add(real.get());
+		quiz.get().setQuestions(lq);
+		
+		
+		quizDao.save(quiz.get());
+						
+	}
+
 
 }

@@ -6,4 +6,6 @@ import com.dbg.quizback.model.Question;
 
 public interface QuestionIdMapper extends Mapper<Question, QuestionIdDTO> {
 
+	Question dtoToModel2(QuestionIdDTO dto);
+
 }

@@ -16,6 +16,6 @@ public class QuizPutQuestionsDTO implements Serializable {
 	
 
 	private static final long serialVersionUID = -2948411319518607553L;
-	private List<QuestionIdDTO> questions;
+	private Integer idQuestion;
 
 }

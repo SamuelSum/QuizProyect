@@ -14,6 +14,7 @@ import com.dbg.quizback.dao.QuestionDAO;
 import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Dificulty;
 import com.dbg.quizback.model.Question;
+import com.dbg.quizback.model.Quiz;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -109,4 +110,10 @@ public class QuestionServiceImpl implements QuestionService {
 
 		answerService.findByIdQuestion(question);
 		return question;
+	}
+
+	@Override
+	public List<Question> findByIdQuiz(Quiz quiz) {
+       List<Question> questions = questionDao.findAllByQuiz(quiz);
+		return questions;
 	}}

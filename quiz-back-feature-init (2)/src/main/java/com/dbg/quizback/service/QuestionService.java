@@ -10,6 +10,7 @@ import java.util.List;
 import com.dbg.quizback.model.Answer;
 import com.dbg.quizback.model.Dificulty;
 import com.dbg.quizback.model.Question;
+import com.dbg.quizback.model.Quiz;
 
 public interface QuestionService extends AbstractCRUDService<Question, Integer>{
 
@@ -24,6 +25,8 @@ public interface QuestionService extends AbstractCRUDService<Question, Integer>{
 	Question create(Question t, Integer dificultyLevel);
 
 	public void joinDificultyWithQuestion(Question question, Dificulty dificulty);
+	
+	public List<Question> findByIdQuiz (Quiz quiz);
 
 
 	
