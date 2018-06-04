@@ -65,13 +65,21 @@ public class QuizServiceImpl implements QuizService {
 		
 		Optional<Question> real = questionService.findById(idQuestion);
 		Optional<Quiz> quiz = quizService.findById(id);
+				
+		if(quiz.get().getQuestions().size()<=10) {
+			quiz.get().getQuestions().add(real.get());
+			quizDao.save(quiz.get());
+		}
+		
+		
+	/*	
 		List <Question> lq = quiz.get().getQuestions();
 		lq.add(real.get());
 		quiz.get().setQuestions(lq);
 		
 		
 		quizDao.save(quiz.get());
-						
+			*/			
 	}
 
 
