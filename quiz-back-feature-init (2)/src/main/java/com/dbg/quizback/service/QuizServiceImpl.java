@@ -68,7 +68,8 @@ public class QuizServiceImpl implements QuizService {
 				
 		if(quiz.get().getQuestions().size()<=10) {
 			quiz.get().getQuestions().add(real.get());
-			quizDao.save(quiz.get());
+			quizService.update(quiz.get());
+		//	quizDao.save(quiz.get());
 		}
 		
 		

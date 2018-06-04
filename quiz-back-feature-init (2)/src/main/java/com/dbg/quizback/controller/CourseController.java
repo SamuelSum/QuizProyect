@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dbg.quizback.component.mapper.course.CourseMapper;
 import com.dbg.quizback.component.mapper.course.CoursePostMapper;
+import com.dbg.quizback.component.mapper.quiz.QuizIdMapper;
 import com.dbg.quizback.component.mapper.user.UserMapper;
 import com.dbg.quizback.dto.courseDTOs.CourseDTO;
 import com.dbg.quizback.dto.courseDTOs.CoursePostDTO;
+import com.dbg.quizback.dto.quizDTOs.QuizIdDTO;
 import com.dbg.quizback.dto.userDTOs.UserDTO;
 import com.dbg.quizback.model.Course;
+import com.dbg.quizback.model.Quiz;
 import com.dbg.quizback.model.User;
 import com.dbg.quizback.service.CourseService;
 
@@ -37,6 +40,9 @@ public class CourseController {
 	
 	@Autowired
 	UserMapper userMapper;
+	
+	@Autowired
+	QuizIdMapper quizIdMapper;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<CourseDTO> findAll(@RequestParam(defaultValue = "0", required = false) Integer page,
@@ -69,9 +75,19 @@ public class CourseController {
 		if(courseService.findById(id).isPresent()) {
 			Optional<Course> course = courseService.findById(id);
 			course.get().getUsers().add(user);
+			courseService.update(course.get());
 		}
+	}
+	
+	@RequestMapping(value = "/{id}/quiz", method = { RequestMethod.PUT})
+	public void update(@PathVariable("id") Integer id, @RequestBody QuizIdDTO dto ) {
+		Quiz quiz = quizIdMapper.dtoToModel(dto);
 		
-		
+		if(courseService.findById(id).isPresent()) {
+			Optional<Course> course = courseService.findById(id);
+			course.get().getQuiz().add(quiz);
+			courseService.update(course.get());
+		}
 	}
 
 }
